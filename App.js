@@ -4,8 +4,13 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-nativ
 const App = () => {
   const [workInterval, setWorkInterval] = useState();
   const [breakInterval, setBreakInterval] = useState();
+  const [isActive, setIsActive] = useState(false);
 
-  const startTimer = () => console.log('start timer clicked');
+  const renderButtonText = () => isActive ? 'Stop Timer' : 'Start Timer'
+
+  const onPress = () => {
+    setIsActive(isActive => !isActive)
+  };
 
   return (
     <View style={styles.container}>
@@ -33,14 +38,14 @@ const App = () => {
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={startTimer}
+        onPress={onPress}
       >
-        <Text>Start Timer</Text>
+        <Text>{renderButtonText()}</Text>
       </TouchableOpacity>
 
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
