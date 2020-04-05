@@ -46,20 +46,20 @@ const App = () => {
     if (!workInterval && !breakInterval) {
       return (
         <TouchableOpacity
-        style={styles.button}
-        onPress={onSetCounterClick}
-      >
-        <Text>Set Counter</Text>
-      </TouchableOpacity>
+          style={styles.button}
+          onPress={onSetCounterClick}
+        >
+          <Text>Set Counter</Text>
+        </TouchableOpacity>
       )
     } else {
       return (
         <TouchableOpacity
-        style={styles.button}
-        onPress={resetCounterValues}
-      >
-        <Text>Reset Counter</Text>
-      </TouchableOpacity>
+          style={styles.button}
+          onPress={resetCounterValues}
+        >
+          <Text>Reset Counter</Text>
+        </TouchableOpacity>
       )
     }
   }
@@ -73,6 +73,7 @@ const App = () => {
   const onSetCounterClick = () => {
     setWorkInterval(workIntervalInput);
     setBreakInterval(breakIntervalInput);
+    setCounter(workIntervalInput);
   };
 
   const resetCounterValues = () => {
@@ -81,13 +82,11 @@ const App = () => {
   }
 
   useEffect(() => {
-    // set counter to work interval and count down
-
     // after count hits zero, change intervalInfo.type to !intervalInfo.type and intervalInfo.length to ${intervalInfo.type}Interval
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        setCounter(counter => counter + 1)
+        setCounter(counter => counter - 1)
       }, 1000);
     } else if (!isActive && counter !== 0) {
       clearInterval(interval);
