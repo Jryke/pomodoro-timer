@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 const App = () => {
   const [workInterval, setWorkInterval] = useState();
   const [breakInterval, setBreakInterval] = useState();
   const [isActive, setIsActive] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   const renderButtonText = () => isActive ? 'Stop Timer' : 'Start Timer'
 
@@ -12,10 +13,22 @@ const App = () => {
     setIsActive(isActive => !isActive)
   };
 
+  useEffect(() => {
+    let interval = null;
+    if (isActive) {
+      interval = setInterval(() => {
+        setCounter(counter => counter + 1)
+      }, 1000);
+    } else if (!isActive && counter !== 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isActive, counter]);
+
   return (
     <View style={styles.container}>
       <Text>Current: working</Text>
-      <Text>Timer: 0</Text>
+      <Text>Timer: {counter}</Text>
       <View style={styles.inputContainer}>
         <Text>Work Interval: </Text>
         <TextInput
