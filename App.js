@@ -2,18 +2,88 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 const App = () => {
+  const [intervalInfo, setIntervalInfo] = useState({
+    type: 'work',
+    length: workInterval
+  })
+  const [workIntervalInput, setWorkIntervalInput] = useState();
+  const [breakIntervalInput, setBreakIntervalInput] = useState();
   const [workInterval, setWorkInterval] = useState();
   const [breakInterval, setBreakInterval] = useState();
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
 
-  const renderButtonText = () => isActive ? 'Stop Timer' : 'Start Timer'
+  const renderIntervalInputs = () => {
+    if (!workInterval && !breakInterval) {
+      return (
+        <View>
+          <View style={styles.inputContainer}>
+            <Text>Work Interval: </Text>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={number => setWorkIntervalInput(number)}
+              placeholder='0'
+              defaultValue={workInterval}
+              keyboardType={'numeric'}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text>Break Interval: </Text>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={number => setBreakIntervalInput(number)}
+              placeholder='0'
+              defaultValue={breakInterval}
+              keyboardType={'numeric'}
+            />
+          </View>
+        </View>
+      );
+    };
+  };
 
-  const onPress = () => {
+  const renderCounterButton = () => {
+    if (!workInterval && !breakInterval) {
+      return (
+        <TouchableOpacity
+        style={styles.button}
+        onPress={onSetCounterClick}
+      >
+        <Text>Set Counter</Text>
+      </TouchableOpacity>
+      )
+    } else {
+      return (
+        <TouchableOpacity
+        style={styles.button}
+        onPress={resetCounterValues}
+      >
+        <Text>Reset Counter</Text>
+      </TouchableOpacity>
+      )
+    }
+  }
+
+  const renderTimerButtonText = () => isActive ? 'Stop Timer' : 'Start Timer';
+
+  const toggleTimer = () => {
     setIsActive(isActive => !isActive)
   };
 
+  const onSetCounterClick = () => {
+    setWorkInterval(workIntervalInput);
+    setBreakInterval(breakIntervalInput);
+  };
+
+  const resetCounterValues = () => {
+    setWorkInterval(null);
+    setBreakInterval(null);
+  }
+
   useEffect(() => {
+    // set counter to work interval and count down
+
+    // after count hits zero, change intervalInfo.type to !intervalInfo.type and intervalInfo.length to ${intervalInfo.type}Interval
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
@@ -29,33 +99,14 @@ const App = () => {
     <View style={styles.container}>
       <Text>Current: working</Text>
       <Text>Timer: {counter}</Text>
-      <View style={styles.inputContainer}>
-        <Text>Work Interval: </Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={number => setWorkInterval(number)}
-          placeholder='0'
-          defaultValue={workInterval}
-          keyboardType={'numeric'}
-        />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text>Break Interval: </Text>
-        <TextInput
-          style={styles.textInput}
-          onChangeText={number => setBreakInterval(number)}
-          placeholder='0'
-          defaultValue={breakInterval}
-          keyboardType={'numeric'}
-        />
-      </View>
+      {renderIntervalInputs()}
+      {renderCounterButton()}
       <TouchableOpacity
         style={styles.button}
-        onPress={onPress}
+        onPress={toggleTimer}
       >
-        <Text>{renderButtonText()}</Text>
+        <Text>{renderTimerButtonText()}</Text>
       </TouchableOpacity>
-
     </View>
   );
 };
