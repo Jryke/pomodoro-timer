@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import IntervalInputs from './components/IntervalInputs';
+import SetCounterButton from './components/SetCounterButton';
 
 const App = () => {
   const [intervalType, setintervalType] = useState('work')
@@ -11,28 +12,7 @@ const App = () => {
   const [breakInterval, setBreakInterval] = useState();
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState();
-
-  const renderCounterButton = () => {
-    if (!workInterval && !breakInterval) {
-      return (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={onSetCounterClick}
-        >
-          <Text>Set Counter</Text>
-        </TouchableOpacity>
-      )
-    } else {
-      return (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={resetCounterValues}
-        >
-          <Text>Reset Counter</Text>
-        </TouchableOpacity>
-      )
-    }
-  }
+  const [isCounterSet, setIsCounterSet] = useState(false);
 
   const renderTimerButtonText = () => isActive ? 'Stop Timer' : 'Start Timer';
 
@@ -44,12 +24,14 @@ const App = () => {
     setWorkInterval(workIntervalInput);
     setBreakInterval(breakIntervalInput);
     setCounter(workIntervalInput);
-    setShowIntervalInputs(prevState => !prevState)
+    setShowIntervalInputs(prevState => !prevState);
+    setIsCounterSet(prevState => !prevState);
   };
 
   const resetCounterValues = () => {
     setWorkInterval(null);
     setBreakInterval(null);
+    setIsCounterSet(prevState => !prevState);
   }
 
   useEffect(() => {
@@ -80,7 +62,7 @@ const App = () => {
       <Text>Current: {intervalType}</Text>
       <Text>Timer: {counter}</Text>
       <IntervalInputs workInterval={workInterval} setWorkIntervalInput={setWorkIntervalInput} breakInterval={breakInterval} setBreakIntervalInput={setBreakIntervalInput} workInterval={workInterval} breakInterval={breakInterval} showIntervalInputs={showIntervalInputs} />
-      {renderCounterButton()}
+      <SetCounterButton isCounterSet={isCounterSet} onSetCounterClick={onSetCounterClick} resetCounterValues={resetCounterValues} />
       <TouchableOpacity
         style={styles.button}
         onPress={toggleTimer}
