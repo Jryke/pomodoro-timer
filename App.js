@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import IntervalInputs from './components/IntervalInputs';
 import SetCounterButton from './components/SetCounterButton';
+import TimerButton from './components/TimerButton';
 
 const App = () => {
   const [intervalType, setintervalType] = useState('work')
@@ -13,8 +14,6 @@ const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState();
   const [isCounterSet, setIsCounterSet] = useState(false);
-
-  const renderTimerButtonText = () => isActive ? 'Stop Timer' : 'Start Timer';
 
   const toggleTimer = () => {
     setIsActive(isActive => !isActive)
@@ -63,12 +62,7 @@ const App = () => {
       <Text>Timer: {counter}</Text>
       <IntervalInputs workInterval={workInterval} setWorkIntervalInput={setWorkIntervalInput} breakInterval={breakInterval} setBreakIntervalInput={setBreakIntervalInput} workInterval={workInterval} breakInterval={breakInterval} showIntervalInputs={showIntervalInputs} />
       <SetCounterButton isCounterSet={isCounterSet} onSetCounterClick={onSetCounterClick} resetCounterValues={resetCounterValues} />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={toggleTimer}
-      >
-        <Text>{renderTimerButtonText()}</Text>
-      </TouchableOpacity>
+      <TimerButton isActive={isActive} toggleTimer={toggleTimer} />
     </View>
   );
 };
@@ -79,11 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
   }
 });
 
