@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 
 const App = () => {
-  const [intervalInfo, setIntervalInfo] = useState({
-    type: 'work',
-    length: workInterval
-  })
+  const [intervalType, setintervalType] = useState('work')
   const [workIntervalInput, setWorkIntervalInput] = useState();
   const [breakIntervalInput, setBreakIntervalInput] = useState();
   const [workInterval, setWorkInterval] = useState();
   const [breakInterval, setBreakInterval] = useState();
   const [isActive, setIsActive] = useState(false);
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState();
 
   const renderIntervalInputs = () => {
     if (!workInterval && !breakInterval) {
@@ -82,8 +79,20 @@ const App = () => {
   }
 
   useEffect(() => {
-    // after count hits zero, change intervalInfo.type to !intervalInfo.type and intervalInfo.length to ${intervalInfo.type}Interval
     let interval = null;
+    // when timer hits 0 - toggle work/break & reset counter
+    if (counter === 0) {
+      console.log('timer hit 0')
+      // clearInterval(interval);
+      if (intervalType === 'work') {
+        setintervalType('break') 
+        setCounter(breakInterval)
+      } else if (intervalType === 'break') {
+        setintervalType('work') 
+        setCounter(workInterval)
+      }
+    }
+    // interval to update counter each second, stop when timer not active
     if (isActive) {
       interval = setInterval(() => {
         setCounter(counter => counter - 1)
@@ -96,7 +105,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Current: working</Text>
+      <Text>Current: {intervalType}</Text>
       <Text>Timer: {counter}</Text>
       {renderIntervalInputs()}
       {renderCounterButton()}
