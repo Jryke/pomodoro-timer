@@ -1,43 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import IntervalInputs from './components/IntervalInputs';
 
 const App = () => {
   const [intervalType, setintervalType] = useState('work')
   const [workIntervalInput, setWorkIntervalInput] = useState();
   const [breakIntervalInput, setBreakIntervalInput] = useState();
+  const [showIntervalInputs, setShowIntervalInputs] = useState(true);
   const [workInterval, setWorkInterval] = useState();
   const [breakInterval, setBreakInterval] = useState();
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState();
-
-  const renderIntervalInputs = () => {
-    if (!workInterval && !breakInterval) {
-      return (
-        <View>
-          <View style={styles.inputContainer}>
-            <Text>Work Interval: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={number => setWorkIntervalInput(number)}
-              placeholder='0'
-              defaultValue={workInterval}
-              keyboardType={'numeric'}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text>Break Interval: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={number => setBreakIntervalInput(number)}
-              placeholder='0'
-              defaultValue={breakInterval}
-              keyboardType={'numeric'}
-            />
-          </View>
-        </View>
-      );
-    };
-  };
 
   const renderCounterButton = () => {
     if (!workInterval && !breakInterval) {
@@ -71,6 +44,7 @@ const App = () => {
     setWorkInterval(workIntervalInput);
     setBreakInterval(breakIntervalInput);
     setCounter(workIntervalInput);
+    setShowIntervalInputs(prevState => !prevState)
   };
 
   const resetCounterValues = () => {
@@ -82,8 +56,6 @@ const App = () => {
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
     if (counter === 0) {
-      console.log('timer hit 0')
-      // clearInterval(interval);
       if (intervalType === 'work') {
         setintervalType('break') 
         setCounter(breakInterval)
@@ -107,7 +79,7 @@ const App = () => {
     <View style={styles.container}>
       <Text>Current: {intervalType}</Text>
       <Text>Timer: {counter}</Text>
-      {renderIntervalInputs()}
+      <IntervalInputs workInterval={workInterval} setWorkIntervalInput={setWorkIntervalInput} breakInterval={breakInterval} setBreakIntervalInput={setBreakIntervalInput} workInterval={workInterval} breakInterval={breakInterval} showIntervalInputs={showIntervalInputs} />
       {renderCounterButton()}
       <TouchableOpacity
         style={styles.button}
@@ -125,15 +97,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  inputContainer: {
-    flexDirection: 'row'
-  },
-  textInput: {
-    height: 20,
-    width: 40,
-    borderColor: 'gray', 
-    borderWidth: 1
   },
   button: {
     alignItems: "center",
