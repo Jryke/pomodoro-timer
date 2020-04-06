@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { render } from 'react-dom';
 
 const SetCounterButton = (props) => {
   if (!props.isCounterSet) {
