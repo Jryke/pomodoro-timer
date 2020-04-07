@@ -6,32 +6,29 @@ import TimerButton from './components/TimerButton';
 
 const App = () => {
   const [intervalType, setintervalType] = useState('work')
-  const [workIntervalInput, setWorkIntervalInput] = useState();
-  const [breakIntervalInput, setBreakIntervalInput] = useState();
-  const [showIntervalInputs, setShowIntervalInputs] = useState(true);
-  const [workInterval, setWorkInterval] = useState();
-  const [breakInterval, setBreakInterval] = useState();
+  const [showInputs, setShowInputs] = useState(true);
+  const [workInterval, setWorkInterval] = useState({
+    minutes: null,
+    seconds: null
+  });
+  const [breakInterval, setBreakInterval] = useState({
+    minutes: null,
+    seconds: null
+  });
+  const [counter, setCounter] = useState({
+    minutes: null,
+    seconds: null
+  });
   const [isActive, setIsActive] = useState(false);
-  const [counter, setCounter] = useState();
-  const [isCounterSet, setIsCounterSet] = useState(false);
 
   const toggleTimer = () => {
     setIsActive(isActive => !isActive)
   };
 
   const onSetCounterClick = () => {
-    setWorkInterval(workIntervalInput);
-    setBreakInterval(breakIntervalInput);
-    setCounter(workIntervalInput);
-    setShowIntervalInputs(prevState => !prevState);
-    setIsCounterSet(prevState => !prevState);
+    setCounter(workInterval);
+    setShowInputs(prevState => !prevState);
   };
-
-  const resetCounterValues = () => {
-    setWorkInterval(null);
-    setBreakInterval(null);
-    setIsCounterSet(prevState => !prevState);
-  }
 
   useEffect(() => {
     let interval = null;
@@ -59,9 +56,9 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text>Current: {intervalType}</Text>
-      <Text>Timer: {counter}</Text>
-      <IntervalInputs workInterval={workInterval} setWorkIntervalInput={setWorkIntervalInput} breakInterval={breakInterval} setBreakIntervalInput={setBreakIntervalInput} workInterval={workInterval} breakInterval={breakInterval} showIntervalInputs={showIntervalInputs} />
-      <SetCounterButton isCounterSet={isCounterSet} onSetCounterClick={onSetCounterClick} resetCounterValues={resetCounterValues} />
+      <Text>Timer: {counter.minutes}:{counter.seconds}</Text>
+      <IntervalInputs workInterval={workInterval} setWorkInterval={setWorkInterval} breakInterval={breakInterval} setBreakInterval={setBreakInterval} showInputs={showInputs} />
+      <SetCounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} setShowInputs={setShowInputs} />
       <TimerButton isActive={isActive} toggleTimer={toggleTimer} />
     </View>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const SetCounterButton = (props) => {
-  if (!props.isCounterSet) {
+  if (props.showInputs) {
     return (
       <TouchableOpacity
         style={styles.button}
@@ -15,7 +15,7 @@ const SetCounterButton = (props) => {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={props.resetCounterValues}
+        onPress={props.setShowInputs}
       >
         <Text>Reset Counter</Text>
       </TouchableOpacity>
