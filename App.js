@@ -20,14 +20,21 @@ const App = () => {
     seconds: null
   });
   const [isActive, setIsActive] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('')
 
   const toggleTimer = () => {
     setIsActive(isActive => !isActive)
   };
 
   const onSetCounterClick = () => {
-    setCounter(workInterval);
-    setShowInputs(prevState => !prevState);
+    if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
+      setErrorMessage('');
+      setCounter(workInterval);
+      setShowInputs(prevState => !prevState);
+    } else {
+      console.log('intervals need to be set')
+      setErrorMessage('**please insert work and break time values**');
+    }
   };
 
   useEffect(() => {
@@ -59,6 +66,7 @@ const App = () => {
       <Text>Timer: {counter.minutes}:{counter.seconds}</Text>
       <IntervalInputs workInterval={workInterval} setWorkInterval={setWorkInterval} breakInterval={breakInterval} setBreakInterval={setBreakInterval} showInputs={showInputs} />
       <SetCounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} setShowInputs={setShowInputs} />
+      <Text style={styles.errorText}>{errorMessage}</Text>
       <TimerButton isActive={isActive} toggleTimer={toggleTimer} />
     </View>
   );
@@ -70,6 +78,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  errorText: {
+    color: 'red'
   }
 });
 
