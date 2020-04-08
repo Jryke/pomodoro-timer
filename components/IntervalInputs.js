@@ -15,7 +15,7 @@ const IntervalInputs = (props) => {
               minutes: number
             })}
             placeholder='0'
-            defaultValue={props.workInterval.minutes}
+            value={props.workInterval.minutes}
             keyboardType={'numeric'}
           />
           <Text> Seconds: </Text>
@@ -26,7 +26,7 @@ const IntervalInputs = (props) => {
               seconds: number
             })}
             placeholder='0'
-            defaultValue={props.workInterval.seconds}
+            value={props.workInterval.seconds}
             keyboardType={'numeric'}
           />
         </View>
@@ -40,7 +40,7 @@ const IntervalInputs = (props) => {
               minutes: number
             })}
             placeholder='0'
-            defaultValue={props.breakInterval.minutes}
+            value={props.breakInterval.minutes}
             keyboardType={'numeric'}
           />
           <Text> Seconds: </Text>
@@ -51,7 +51,7 @@ const IntervalInputs = (props) => {
               seconds: number
             })}
             placeholder='0'
-            defaultValue={props.breakInterval.seconds}
+            value={props.breakInterval.seconds}
             keyboardType={'numeric'}
           />
         </View>
