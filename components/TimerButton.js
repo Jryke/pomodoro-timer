@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 
 const TimerButton = (props) => {
   const renderButtonText = props.isActive ? 'Stop Timer' : 'Start Timer';
@@ -12,6 +13,11 @@ const TimerButton = (props) => {
     </TouchableOpacity>
   );
 };
+
+TimerButton.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  toggleTimer: PropTypes.func.isRequired
+}
 
 const styles = StyleSheet.create({
   button: {

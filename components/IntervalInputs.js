@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 
 const IntervalInputs = (props) => {
   if (props.showInputs) {
@@ -77,5 +78,13 @@ const styles = StyleSheet.create({
     borderWidth: 1
   }
 })
+
+IntervalInputs.propTypes = {
+  workInterval: PropTypes.objectOf(PropTypes.number),
+  setWorkInterval: PropTypes.func.isRequired,
+  breakInterval: PropTypes.objectOf(PropTypes.number),
+  setBreakInterval: PropTypes.func.isRequired,
+  showInputs: PropTypes.bool.isRequired
+}
 
 export default IntervalInputs;

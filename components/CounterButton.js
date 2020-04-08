@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 
 const CounterButton = (props) => {
   if (props.showInputs) {
@@ -22,6 +23,12 @@ const CounterButton = (props) => {
     )
   }
 };
+
+CounterButton.propTypes = {
+  showInputs: PropTypes.bool.isRequired,
+  onSetCounterClick: PropTypes.func.isRequired,
+  setShowInputs: PropTypes.func.isRequired
+}
 
 const styles = StyleSheet.create({
   button: {
