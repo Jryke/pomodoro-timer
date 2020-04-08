@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-const SetCounterButton = (props) => {
+const CounterButton = (props) => {
   if (props.showInputs) {
     return (
       <TouchableOpacity
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SetCounterButton;
+export default CounterButton;
