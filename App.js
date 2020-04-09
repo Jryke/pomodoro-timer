@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import TimerDisplay from './components/TimerDisplay';
 import IntervalInputs from './components/IntervalInputs';
 import CounterButton from './components/CounterButton';
 import TimerButton from './components/TimerButton';
@@ -73,7 +74,7 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text>Current: {intervalType}</Text>
-      <Text>Timer: {counter.minutes}:{counter.seconds}</Text>
+      <TimerDisplay counter={counter} />
       <IntervalInputs workInterval={workInterval} setWorkInterval={setWorkInterval} breakInterval={breakInterval} setBreakInterval={setBreakInterval} showInputs={showInputs} />
       <CounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} setShowInputs={setShowInputs} />
       <Text style={styles.errorText}>{errorMessage}</Text>
