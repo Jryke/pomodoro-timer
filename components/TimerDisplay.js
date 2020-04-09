@@ -1,14 +1,17 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-const renderSeconds = (seconds) => {
-  if (seconds < 10) return `0${seconds}`
-  return seconds
+const renderCountdown = (counter) => {
+  if (counter.seconds < 10) {
+    if (counter.minutes) return `${counter.minutes}:0${counter.seconds}`
+    return `0:0${counter.seconds}`
+  }
+  return `${counter.minutes}:${counter.seconds}`
 }
 
 const TimerDisplay = (props) => {
   return (
-    <Text>Timer: {props.counter.minutes}:{renderSeconds(props.counter.seconds)}</Text>
+    <Text>Timer: {props.counter.minutes || props.counter.seconds ? renderCountdown(props.counter) : null}</Text>
   );
 };
 
