@@ -27,35 +27,6 @@ const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState('')
 
-  const onSetCounterClick = () => {
-    if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
-      setIsActive(false);
-      setintervalType(WORKING_INTERVAL);
-      setErrorMessage('');
-      setCounter(workInterval);
-      setShowInputs(prevState => !prevState);
-    } else {
-      setErrorMessage('**please insert work and break time values**');
-    }
-  };
-  
-  const onResetCounterClick = () => {
-    setIsActive(false);
-    setWorkInterval({
-      minutes: null,
-      seconds: null
-    });
-    setBreakInterval({
-      minutes: null,
-      seconds: null
-    });
-    setShowInputs(true)
-    setCounter({
-      minutes: null,
-      seconds: null
-    })
-  }
-
   useEffect(() => {
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
@@ -89,6 +60,35 @@ const App = () => {
     }
     return () => clearInterval(interval);
   }, [isActive, counter]);
+
+  const onSetCounterClick = () => {
+    if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
+      setIsActive(false);
+      setintervalType(WORKING_INTERVAL);
+      setErrorMessage('');
+      setCounter(workInterval);
+      setShowInputs(prevState => !prevState);
+    } else {
+      setErrorMessage('**please insert work and break time values**');
+    }
+  };
+  
+  const onResetCounterClick = () => {
+    setIsActive(false);
+    setWorkInterval({
+      minutes: null,
+      seconds: null
+    });
+    setBreakInterval({
+      minutes: null,
+      seconds: null
+    });
+    setShowInputs(true)
+    setCounter({
+      minutes: null,
+      seconds: null
+    })
+  }
 
   return (
     <View style={styles.container}>
