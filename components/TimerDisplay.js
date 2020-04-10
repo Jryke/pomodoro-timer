@@ -4,7 +4,7 @@ import formatTimeDisplay from './formatTimeDisplay';
 
 const TimerDisplay = (props) => {
   return (
-    <Text>{props.counter.minutes || props.counter.seconds ? formatTimeDisplay(props.counter) : null}</Text>
+    <Text>{props.counter.minutes || props.counter.seconds ? formatTimeDisplay(props.counter) : '0:00'}</Text>
   );
 };
 
