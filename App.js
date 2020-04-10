@@ -35,6 +35,19 @@ const App = () => {
       setErrorMessage('**please insert work and break time values**');
     }
   };
+  
+  const onResetCounterClick = () => {
+    setIsActive(false);
+    setWorkInterval({
+      minutes: null,
+      seconds: null
+    });
+    setBreakInterval({
+      minutes: null,
+      seconds: null
+    });
+    setShowInputs(true)
+  }
 
   useEffect(() => {
     let interval = null;
@@ -74,7 +87,7 @@ const App = () => {
       <Text>Current: {intervalType}</Text>
       <TimerDisplay counter={counter} />
       <IntervalInputs workInterval={workInterval} setWorkInterval={setWorkInterval} breakInterval={breakInterval} setBreakInterval={setBreakInterval} showInputs={showInputs} />
-      <CounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} setShowInputs={setShowInputs} />
+      <CounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} onResetCounterClick={onResetCounterClick} />
       <Text style={styles.errorText}>{errorMessage}</Text>
       <TimerButton isActive={isActive} setIsActive={setIsActive} />
     </View>

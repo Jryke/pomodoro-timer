@@ -16,7 +16,7 @@ const CounterButton = (props) => {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={props.setShowInputs}
+        onPress={props.onResetCounterClick}
       >
         <Text>Reset Counter</Text>
       </TouchableOpacity>
