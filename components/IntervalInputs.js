@@ -73,20 +73,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   text: {
-    fontFamily: 'sans-serif',
     color: '#66ff99',
-    fontSize: '1.2rem',
+    fontSize: 24,
     textAlign: 'center',
-    marginTop: '1rem',
+    marginTop: 24,
   },
   textInput: {
     color: '#66ff99',
-    height: '1.75rem',
-    width: '4rem',
+    height: 36,
+    width: 72,
     borderColor: '#66ff99', 
-    fontSize: '1.25rem',
+    fontSize: 24,
     borderWidth: 1,
-    margin: '.5rem',
+    margin: 12,
   },
 })
 

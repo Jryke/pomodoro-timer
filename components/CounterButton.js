@@ -37,13 +37,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#66ff99',
     borderRadius: 5,
-    padding: '1rem',
-    margin: '1rem'
+    padding: 24,
+    margin: 24
   },
   text: {
-    fontFamily: 'sans-serif',
     color: '#66ff99',
-    fontSize: '1.2rem',
+    fontSize: 24,
     textAlign: 'center',
   },
 });

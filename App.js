@@ -106,9 +106,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontFamily: 'sans-serif',
     color: '#66ff99',
-    fontSize: '3rem',
+    fontSize: 48,
     textAlign: 'center',
   },
   errorText: {
