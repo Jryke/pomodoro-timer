@@ -5,8 +5,11 @@ import IntervalInputs from './components/IntervalInputs';
 import CounterButton from './components/CounterButton';
 import TimerButton from './components/TimerButton';
 
+const WORKING_INTERVAL = 'Working';
+const BREAK_INTERVAL = 'On Break';
+
 const App = () => {
-  const [intervalType, setintervalType] = useState('Working')
+  const [intervalType, setintervalType] = useState(WORKING_INTERVAL)
   const [showInputs, setShowInputs] = useState(true);
   const [workInterval, setWorkInterval] = useState({
     minutes: null,
@@ -26,7 +29,7 @@ const App = () => {
   const onSetCounterClick = () => {
     if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
       setIsActive(false);
-      setintervalType('Working');
+      setintervalType(WORKING_INTERVAL);
       setErrorMessage('');
       setCounter(workInterval);
       setShowInputs(prevState => !prevState);
@@ -54,17 +57,16 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log(counter.seconds);
-    console.log(counter.minutes);
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
     if ((counter.minutes === 0 || counter.minutes === null) && counter.seconds === 0) {
-      if (intervalType === 'working') {
-        setintervalType('On Break') 
-        setCounter(breakInterval)
-      } else if (intervalType === 'On Break') {
-        setintervalType('working') 
-        setCounter(workInterval)
+      console.log('firing');
+      if (intervalType === WORKING_INTERVAL) {
+        setintervalType(BREAK_INTERVAL);
+        setCounter(breakInterval);
+      } else if (intervalType === BREAK_INTERVAL) {
+        setintervalType(WORKING_INTERVAL);
+        setCounter(workInterval);
       }
     }
     // interval to update counter each second, stop when timer not active
