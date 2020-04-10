@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
+import formatTimeDisplay from './formatTimeDisplay';
 
 const IntervalInputs = (props) => {
   if (props.showInputs) {
@@ -61,8 +62,8 @@ const IntervalInputs = (props) => {
   };
   return (
     <View>
-      <Text>Work Interval: {props.workInterval.minutes}:{props.workInterval.seconds}</Text>
-      <Text>Break Interval: {props.breakInterval.minutes}:{props.breakInterval.seconds}</Text>
+      <Text>Work Interval: {formatTimeDisplay(props.workInterval)}</Text>
+      <Text>Break Interval: {formatTimeDisplay(props.breakInterval)}</Text>
     </View>
   );
 };
