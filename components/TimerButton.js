@@ -7,7 +7,7 @@ const TimerButton = (props) => {
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={props.toggleTimer}
+      onPress={() => props.setIsActive(isActive => !isActive)}
     >
       <Text>{renderButtonText}</Text>
     </TouchableOpacity>

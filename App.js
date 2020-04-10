@@ -23,10 +23,6 @@ const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [errorMessage, setErrorMessage] = useState('')
 
-  const toggleTimer = () => {
-    setIsActive(isActive => !isActive)
-  };
-
   const onSetCounterClick = () => {
     if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
       setIsActive(false);
@@ -80,7 +76,7 @@ const App = () => {
       <IntervalInputs workInterval={workInterval} setWorkInterval={setWorkInterval} breakInterval={breakInterval} setBreakInterval={setBreakInterval} showInputs={showInputs} />
       <CounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} setShowInputs={setShowInputs} />
       <Text style={styles.errorText}>{errorMessage}</Text>
-      <TimerButton isActive={isActive} toggleTimer={toggleTimer} />
+      <TimerButton isActive={isActive} setIsActive={setIsActive} />
     </View>
   );
 };
