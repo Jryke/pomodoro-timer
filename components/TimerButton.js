@@ -9,7 +9,7 @@ const TimerButton = (props) => {
       style={styles.button}
       onPress={() => props.setIsActive(isActive => !isActive)}
     >
-      <Text>{renderButtonText}</Text>
+      <Text style={styles.text}>{renderButtonText}</Text>
     </TouchableOpacity>
   );
 };
@@ -21,10 +21,20 @@ TimerButton.propTypes = {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
-  }
+    alignItems: 'center',
+    backgroundColor: '#565656',
+    borderWidth: 1,
+    borderColor: '#66ff99',
+    borderRadius: 5,
+    padding: '1rem',
+    margin: '1rem'
+  },
+  text: {
+    fontFamily: 'sans-serif',
+    color: '#66ff99',
+    fontSize: '1.2rem',
+    textAlign: 'center',
+  },
 });
 
 export default TimerButton;

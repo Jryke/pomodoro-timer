@@ -6,7 +6,7 @@ import CounterButton from './components/CounterButton';
 import TimerButton from './components/TimerButton';
 
 const App = () => {
-  const [intervalType, setintervalType] = useState('work')
+  const [intervalType, setintervalType] = useState('Working')
   const [showInputs, setShowInputs] = useState(true);
   const [workInterval, setWorkInterval] = useState({
     minutes: null,
@@ -26,7 +26,7 @@ const App = () => {
   const onSetCounterClick = () => {
     if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
       setIsActive(false);
-      setintervalType('work');
+      setintervalType('Working');
       setErrorMessage('');
       setCounter(workInterval);
       setShowInputs(prevState => !prevState);
@@ -88,7 +88,7 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Current: {intervalType}</Text>
+      <Text style={styles.text}>{intervalType}</Text>
       <TimerDisplay counter={counter} />
       <IntervalInputs workInterval={workInterval} setWorkInterval={setWorkInterval} breakInterval={breakInterval} setBreakInterval={setBreakInterval} showInputs={showInputs} />
       <CounterButton showInputs={showInputs} onSetCounterClick={onSetCounterClick} onResetCounterClick={onResetCounterClick} />
@@ -101,9 +101,15 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#121212',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  text: {
+    fontFamily: 'sans-serif',
+    color: '#66ff99',
+    fontSize: '3rem',
+    textAlign: 'center',
   },
   errorText: {
     color: 'red'

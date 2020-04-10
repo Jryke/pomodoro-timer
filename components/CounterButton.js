@@ -9,7 +9,7 @@ const CounterButton = (props) => {
         style={styles.button}
         onPress={props.onSetCounterClick}
       >
-        <Text>Set Counter</Text>
+        <Text style={styles.text}>Set Counter</Text>
       </TouchableOpacity>
     )
   } else {
@@ -18,7 +18,7 @@ const CounterButton = (props) => {
         style={styles.button}
         onPress={props.onResetCounterClick}
       >
-        <Text>Reset Counter</Text>
+        <Text style={styles.text}>Reset Counter</Text>
       </TouchableOpacity>
     )
   }
@@ -32,10 +32,20 @@ CounterButton.propTypes = {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10
-  }
+    alignItems: 'center',
+    backgroundColor: '#565656',
+    borderWidth: 1,
+    borderColor: '#66ff99',
+    borderRadius: 5,
+    padding: '1rem',
+    margin: '1rem'
+  },
+  text: {
+    fontFamily: 'sans-serif',
+    color: '#66ff99',
+    fontSize: '1.2rem',
+    textAlign: 'center',
+  },
 });
 
 export default CounterButton;
