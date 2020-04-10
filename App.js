@@ -47,6 +47,10 @@ const App = () => {
       seconds: null
     });
     setShowInputs(true)
+    setCounter({
+      minutes: null,
+      seconds: null
+    })
   }
 
   useEffect(() => {
