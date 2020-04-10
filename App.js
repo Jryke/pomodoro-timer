@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { vibrate } from './utils';
 import TimerDisplay from './components/TimerDisplay';
 import IntervalInputs from './components/IntervalInputs';
 import CounterButton from './components/CounterButton';
@@ -59,6 +60,7 @@ const App = () => {
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
     if ((counter.minutes === 0 || counter.minutes === null) && counter.seconds === 0) {
+      vibrate()
       if (intervalType === WORKING_INTERVAL) {
         setintervalType(BREAK_INTERVAL);
         setCounter(breakInterval);
