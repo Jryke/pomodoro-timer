@@ -29,6 +29,8 @@ const App = () => {
 
   const onSetCounterClick = () => {
     if((workInterval.minutes || workInterval.seconds) && (breakInterval.minutes || breakInterval.seconds)) {
+      setIsActive(false);
+      setintervalType('work');
       setErrorMessage('');
       setCounter(workInterval);
       setShowInputs(prevState => !prevState);
