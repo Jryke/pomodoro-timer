@@ -34,7 +34,6 @@ const App = () => {
       setCounter(workInterval);
       setShowInputs(prevState => !prevState);
     } else {
-      console.log('intervals need to be set')
       setErrorMessage('**please insert work and break time values**');
     }
   };
@@ -60,7 +59,6 @@ const App = () => {
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
     if ((counter.minutes === 0 || counter.minutes === null) && counter.seconds === 0) {
-      console.log('firing');
       if (intervalType === WORKING_INTERVAL) {
         setintervalType(BREAK_INTERVAL);
         setCounter(breakInterval);
