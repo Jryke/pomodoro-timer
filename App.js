@@ -54,14 +54,16 @@ const App = () => {
   }
 
   useEffect(() => {
+    console.log(counter.seconds);
+    console.log(counter.minutes);
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
     if ((counter.minutes === 0 || counter.minutes === null) && counter.seconds === 0) {
-      if (intervalType === 'work') {
-        setintervalType('break') 
+      if (intervalType === 'working') {
+        setintervalType('On Break') 
         setCounter(breakInterval)
-      } else if (intervalType === 'break') {
-        setintervalType('work') 
+      } else if (intervalType === 'On Break') {
+        setintervalType('working') 
         setCounter(workInterval)
       }
     }
