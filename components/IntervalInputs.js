@@ -19,6 +19,7 @@ const IntervalInputs = (props) => {
             placeholder='0'
             value={props.workInterval.minutes || ''}
             keyboardType={'numeric'}
+            maxLength={2}
           />
           <Text style={styles.text}> Seconds: </Text>
           <TextInput
@@ -30,6 +31,7 @@ const IntervalInputs = (props) => {
             placeholder='0'
             value={props.workInterval.seconds || ''}
             keyboardType={'numeric'}
+            maxLength={2}
           />
         </View>
         <Text style={styles.text}>Break Time: </Text>
@@ -44,6 +46,7 @@ const IntervalInputs = (props) => {
             placeholder='0'
             value={props.breakInterval.minutes || ''}
             keyboardType={'numeric'}
+            maxLength={2}
           />
           <Text style={styles.text}> Seconds: </Text>
           <TextInput
@@ -55,6 +58,7 @@ const IntervalInputs = (props) => {
             placeholder='0'
             value={props.breakInterval.seconds || ''}
             keyboardType={'numeric'}
+            maxLength={2}
           />
         </View>
       </View>
