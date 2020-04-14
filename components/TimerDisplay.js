@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import formatTimeDisplay from './formatTimeDisplay';
 
 const TimerDisplay = (props) => {
@@ -15,5 +16,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
+
+TimerDisplay.propTypes = {
+  counter: PropTypes.objectOf(PropTypes.number)
+}
 
 export default TimerDisplay;
