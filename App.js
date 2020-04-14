@@ -29,7 +29,7 @@ const App = () => {
   useEffect(() => {
     let interval = null;
     // when timer hits 0 - toggle work/break & reset counter
-    if ((counter.minutes === 0 || counter.minutes === null) && counter.seconds === 0) {
+    if ((counter.minutes == 0 || counter.minutes === null) && counter.seconds === 0) {
       Vibration.vibrate([500, 500, 500])
       if (intervalType === WORKING_INTERVAL) {
         setintervalType(BREAK_INTERVAL);
