@@ -106,9 +106,9 @@ const styles = StyleSheet.create({
 })
 
 IntervalInputs.propTypes = {
-  workInterval: PropTypes.objectOf(PropTypes.number),
+  workInterval: PropTypes.objectOf(PropTypes.string),
   setWorkInterval: PropTypes.func.isRequired,
-  breakInterval: PropTypes.objectOf(PropTypes.number),
+  breakInterval: PropTypes.objectOf(PropTypes.string),
   setBreakInterval: PropTypes.func.isRequired,
   showInputs: PropTypes.bool.isRequired,
 }
