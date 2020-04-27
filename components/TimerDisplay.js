@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
     color: '#66ff99',
     fontSize: 48,
     textAlign: 'center',
+    fontFamily: 'alarm-clock',
   },
 })
 

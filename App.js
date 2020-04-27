@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Vibration } from 'react-native'
+import * as Font from 'expo-font'
+import { AppLoading } from 'expo'
 import TimerDisplay from './components/TimerDisplay'
 import IntervalInputs from './components/IntervalInputs'
 import CounterButton from './components/CounterButton'
 import TimerButton from './components/TimerButton'
 
+const fetchFonts = () => {
+  return Font.loadAsync({
+    'alarm-clock': require('./assets/fonts/alarm-clock.ttf'),
+  })
+}
+
 const WORKING_INTERVAL = 'Working'
 const BREAK_INTERVAL = 'On Break'
 
 const App = () => {
+  const [dataLoaded, setDataLoaded] = useState(false)
   const [intervalType, setintervalType] = useState(WORKING_INTERVAL)
   const [showInputs, setShowInputs] = useState(true)
   const [workInterval, setWorkInterval] = useState({
@@ -95,6 +104,14 @@ const App = () => {
     })
   }
 
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setDataLoaded(true)}
+      />
+    )
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{intervalType}</Text>
