@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
 CounterButton.propTypes = {
   showInputs: PropTypes.bool.isRequired,
   onSetCounterClick: PropTypes.func.isRequired,
-  setShowInputs: PropTypes.func.isRequired,
 }
 
 export default CounterButton
