@@ -14,11 +14,6 @@ const TimerButton = props => {
   )
 }
 
-TimerButton.propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  toggleTimer: PropTypes.func.isRequired,
-}
-
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
@@ -35,5 +30,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 })
+
+TimerButton.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+}
 
 export default TimerButton
