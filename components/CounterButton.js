@@ -1,14 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import PropTypes from 'prop-types'
 
-const CounterButton = (props) => {
+const CounterButton = props => {
   if (props.showInputs) {
     return (
-      <TouchableOpacity
-        style={styles.button}
-        onPress={props.onSetCounterClick}
-      >
+      <TouchableOpacity style={styles.button} onPress={props.onSetCounterClick}>
         <Text style={styles.text}>Set Counter</Text>
       </TouchableOpacity>
     )
@@ -22,12 +19,6 @@ const CounterButton = (props) => {
       </TouchableOpacity>
     )
   }
-};
-
-CounterButton.propTypes = {
-  showInputs: PropTypes.bool.isRequired,
-  onSetCounterClick: PropTypes.func.isRequired,
-  setShowInputs: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -38,13 +29,19 @@ const styles = StyleSheet.create({
     borderColor: '#66ff99',
     borderRadius: 5,
     padding: 24,
-    margin: 24
+    margin: 24,
   },
   text: {
     color: '#66ff99',
     fontSize: 24,
     textAlign: 'center',
   },
-});
+})
 
-export default CounterButton;
+CounterButton.propTypes = {
+  showInputs: PropTypes.bool.isRequired,
+  onSetCounterClick: PropTypes.func.isRequired,
+  setShowInputs: PropTypes.func.isRequired,
+}
+
+export default CounterButton

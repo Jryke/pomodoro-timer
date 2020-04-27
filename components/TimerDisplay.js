@@ -1,13 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import PropTypes from 'prop-types';
-import formatTimeDisplay from './formatTimeDisplay';
+import React from 'react'
+import { StyleSheet, Text } from 'react-native'
+import PropTypes from 'prop-types'
+import formatTimeDisplay from './formatTimeDisplay'
 
-const TimerDisplay = (props) => {
+const TimerDisplay = props => {
   return (
-    <Text style={styles.text}>{props.counter.minutes || props.counter.seconds ? formatTimeDisplay(props.counter) : '0:00'}</Text>
-  );
-};
+    <Text style={styles.text}>
+      {props.counter.minutes || props.counter.seconds
+        ? formatTimeDisplay(props.counter)
+        : '0:00'}
+    </Text>
+  )
+}
 
 const styles = StyleSheet.create({
   text: {
@@ -18,7 +22,7 @@ const styles = StyleSheet.create({
 })
 
 TimerDisplay.propTypes = {
-  counter: PropTypes.objectOf(PropTypes.number)
+  counter: PropTypes.objectOf(PropTypes.number),
 }
 
-export default TimerDisplay;
+export default TimerDisplay
