@@ -7,7 +7,7 @@ const IntervalInputs = props => {
   if (props.showInputs) {
     return (
       <View>
-        <Text style={styles.text}>Work Time: </Text>
+        <Text style={styles.header}>Work Time: </Text>
         <View style={styles.inputContainer}>
           <Text style={styles.text}> Minutes: </Text>
           <TextInput
@@ -38,7 +38,7 @@ const IntervalInputs = props => {
             maxLength={2}
           />
         </View>
-        <Text style={styles.text}>Break Time: </Text>
+        <Text style={styles.header}>Break Time: </Text>
         <View style={styles.inputContainer}>
           <Text style={styles.text}> Minutes: </Text>
           <TextInput
@@ -88,11 +88,18 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
   },
+  header: {
+    color: '#66ff99',
+    fontSize: 32,
+    textAlign: 'center',
+    marginTop: 32,
+  },
   text: {
     color: '#66ff99',
     fontSize: 24,
     textAlign: 'center',
-    marginTop: 24,
+    marginTop: 'auto',
+    marginBottom: 'auto',
   },
   textInput: {
     color: '#66ff99',
