@@ -19,6 +19,12 @@ const styles = StyleSheet.create({
     fontSize: 48,
     textAlign: 'center',
     fontFamily: 'alarm-clock',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: '#66ff99',
+    borderRadius: 7,
+    paddingHorizontal: 12,
+    marginTop: 14,
   },
 })
 
